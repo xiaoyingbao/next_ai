@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Next AI 🤖
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An AI-powered document Q&A assistant that allows users to upload PDF files and ask questions in natural language. Built with LangChain, OpenAI GPT, and React.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+> Upload a PDF → Ask a question → Get an instant, accurate answer
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- 📄 **PDF Upload** — Upload any document for analysis
+- 💬 **Natural Language Q&A** — Ask questions in plain English
+- 🎤 **Voice Input** — Speak your question using Web Speech API
+- ⚡ **Real-time Streaming** — Responses streamed back instantly
+- 🔍 **RAG Architecture** — Retrieval-Augmented Generation for accurate answers
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React, Web Speech API |
+| Backend | Node.js, Express |
+| AI / LLM | LangChain, OpenAI GPT-3.5 Turbo |
+| Document Processing | PDF parsing, text chunking, vector embeddings |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Node.js 18+
+- OpenAI API Key
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+# Clone the repo
+git clone https://github.com/your-username/nextai.git
+cd nextai
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Install frontend dependencies
+npm install
 
-## Learn More
+# Install backend dependencies
+cd Server
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Environment Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a `.env` file in the **Server** directory:
 
-### Code Splitting
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Run the App
 
-### Analyzing the Bundle Size
+```bash
+# Start backend (from Server/)
+cd Server
+node server.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Start frontend (from root)
+npm start
+```
 
-### Making a Progressive Web App
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## How It Works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+User uploads PDF
+      ↓
+PDF parsed & split into chunks
+      ↓
+Chunks converted to vector embeddings (OpenAI)
+      ↓
+User asks a question (text or voice)
+      ↓
+Relevant chunks retrieved via similarity search
+      ↓
+GPT-3.5 Turbo generates answer from context
+      ↓
+Answer streamed back to user
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Project Structure
 
-### `npm run build` fails to minify
+```
+nextai/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── Server/
+│   ├── uploads/               # Temporary PDF storage
+│   ├── chat.js                # Chat logic
+│   ├── server.js              # Express API server
+│   └── package.json
+├── src/
+│   ├── components/
+│   │   ├── ChatComponent.js   # Main chat UI + voice input
+│   │   ├── PdfUploader.js     # PDF upload handler
+│   │   └── RenderQA.js        # Q&A display component
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Author
+
+**Xiaoying Bao**  
